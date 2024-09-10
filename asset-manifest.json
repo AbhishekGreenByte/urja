@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/urja/static/css/main.d550c9df.css",
+    "main.js": "/urja/static/js/main.ffa3e197.js",
+    "static/js/453.233a72fa.chunk.js": "/urja/static/js/453.233a72fa.chunk.js",
+    "index.html": "/urja/index.html",
+    "main.d550c9df.css.map": "/urja/static/css/main.d550c9df.css.map",
+    "main.ffa3e197.js.map": "/urja/static/js/main.ffa3e197.js.map",
+    "453.233a72fa.chunk.js.map": "/urja/static/js/453.233a72fa.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d550c9df.css",
+    "static/js/main.ffa3e197.js"
+  ]
+}
