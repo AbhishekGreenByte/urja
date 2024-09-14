@@ -1,4 +1,3 @@
-import NavBar from "../components/NavBar";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import {config} from "../utils/Config";
 import React from "react";
@@ -9,7 +8,7 @@ const App:React.FC = () => {
         <Router>
             <Routes>
                 {
-                    config.getMenuItems().map((item, index) => {
+                    config.getAllPages().map((item, index) => {
                         const Component = config.getComponent(item);
                         return (
                             <Route

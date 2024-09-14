@@ -17,7 +17,8 @@ class Config {
 
     ]
     private components: Map<string, IPage> = new Map([
-        ['Home', {label: 'Home', router: '/', showMenu: true, component: Home}],
+        ['Default', {label: 'Default', router: '/', showMenu: false, component: Home}],
+        ['Home', {label: 'Home', router: '/home', showMenu: true, component: Home}],
         ['About', {label: 'About', router: '/about', showMenu: true, component: About}],
         ['Contact', {label: 'Contact', router: '/contact', showMenu: true, component: Contact}],
         ['Services', {label: 'Services', router: '/services', showMenu: true, component: Services}],
@@ -38,6 +39,10 @@ class Config {
 
     public getMenuItemRoute(name:string): string {
         return this.components.get(name)?.router || this.defaultRoute;
+    }
+
+    public getAllPages():string[] {
+        return Array.from(this.components.keys());
     }
 
     public getCompanyName(): string {

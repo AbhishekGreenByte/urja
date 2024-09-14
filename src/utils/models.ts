@@ -7,8 +7,7 @@ export interface IButtonProps {
 }
 
 export interface IMenuBar {
-    dataItems: string[],
-    activeIndex: number,
+    active?: string,
 }
 
 export interface INavBar {
