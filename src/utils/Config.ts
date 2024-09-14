@@ -11,7 +11,7 @@ class Config {
         // private constructor to prevent instantiation
     }
 
-    private companyName = "My Company";
+    private companyName = "URJA";
     private defaultRoute = "/";
     private routerPrefix = "/urja";
     private pageComponent = [
