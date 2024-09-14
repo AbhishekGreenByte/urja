@@ -13,6 +13,7 @@ class Config {
 
     private companyName = "My Company";
     private defaultRoute = "/";
+    private routerPrefix = "/urja";
     private pageComponent = [
 
     ]
@@ -38,7 +39,7 @@ class Config {
     }
 
     public getMenuItemRoute(name:string): string {
-        return this.components.get(name)?.router || this.defaultRoute;
+        return this.routerPrefix + (this.components.get(name)?.router || this.defaultRoute);
     }
 
     public getAllPages():string[] {
@@ -50,7 +51,7 @@ class Config {
     }
 
     public getDefaultRoute(): string {
-        return this.defaultRoute;
+        return this.routerPrefix + this.defaultRoute;
     }
 
     public getComponent(name: string): React.ComponentType | undefined {
