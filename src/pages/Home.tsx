@@ -4,7 +4,10 @@ const Home:React.FC = () => {
     return (
         <div>
             <NavBar active="Home"/>
-            This is Home Page
+            <div className="absolute top-20 ">
+                This is Home Page
+            </div>
+
         </div>
     )
 }

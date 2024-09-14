@@ -4,7 +4,9 @@ const Contact:React.FC = () => {
     return (
         <div>
             <NavBar active="Contact"/>
-            This is Contact Page
+            <div className="absolute top-20">
+                This is Contact Page
+            </div>
         </div>
     )
 }

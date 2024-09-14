@@ -4,7 +4,9 @@ const Services:React.FC = () => {
     return (
         <div>
             <NavBar active="Services"/>
-            This is Services Page
+            <div className="absolute top-20">
+                This is Service Page
+            </div>
         </div>
     )
 }

@@ -3,11 +3,13 @@ import React from "react";
 export interface IButtonProps {
     text: string,
     onClick: ()=>void,
-    type?: 'blue' | 'white'
+    type?: string,
+    textSize?: string
 }
 
 export interface IMenuBar {
     active?: string,
+    type: 'row' | 'column',
 }
 
 export interface INavBar {
