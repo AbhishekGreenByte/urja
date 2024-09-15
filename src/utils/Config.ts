@@ -3,6 +3,7 @@ import About from "../pages/About";
 import Home from "../pages/Home";
 import Services from "../pages/Services";
 import {IPage} from "./models";
+import Donate from "../pages/Donate";
 
 class Config {
     private static _instance: Config;
@@ -20,6 +21,7 @@ class Config {
         ['About', {label: 'About', router: '/about', showMenu: true, component: About}],
         ['Contact', {label: 'Contact', router: '/contact', showMenu: true, component: Contact}],
         ['Services', {label: 'Services', router: '/services', showMenu: true, component: Services}],
+        ['Donation', {label: 'Donation', router: '/donation', showMenu: false, component: Donate}]
     ]);
 
 

@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import {config} from "../utils/Config";
 
 const MenuBar:React.FC<IMenuBar> = (props) => {
-    console.log("jjj",props)
     switch (props.type) {
         case "column":
             return (
@@ -12,7 +11,7 @@ const MenuBar:React.FC<IMenuBar> = (props) => {
                         config.getMenuItems().map((item, index) => {
                             return (
                                 <div key={index}
-                                     className={`cursor-pointer hover:text-secondary hover:text-lg ${props.active && props.active === item ? 'text-error' : ''}`}>
+                                     className={`cursor-pointer hover:text-secondary ${props.active && props.active === item ? 'text-error' : ''}`}>
                                     <Link to={config.getMenuItemRoute(item)}>{item}</Link>
                                 </div>
                             )

@@ -3,10 +3,12 @@ import {config} from "../utils/Config";
 import {INavBar} from "../utils/models";
 import MenuBar from "./MenuBar";
 import {useState} from "react";
+import {Link} from "react-router-dom";
+import {useNavigateToDonation} from "../utils/utils";
 
 const NavBar:React.FC<INavBar> = (props) => {
     let [buttonIcon,setButtonIcon] = useState("☰");
-
+    const navigateToDonation = useNavigateToDonation();
     const toggleMenu = () => {
         const menu = document.getElementById('menu-chart');
         if (menu){
@@ -23,11 +25,14 @@ const NavBar:React.FC<INavBar> = (props) => {
     }
     return (
         <div className="w-full bg-bgLight col flex items-center flex-col absolute top-0 z-10 bg-white shadow-lg">
-            <div className="w-full max-w-screen-xl h-20 px-2">
+            <div className="w-full max-w-screen-xl h-16 px-2">
                 <div className="w-full h-full flex items-center justify-between ">
                     {/*Logo Section*/}
                     <div>
-                        {config.getCompanyName()}
+                        <Link to={config.getDefaultRoute()}>
+                            {config.getCompanyName()}
+                        </Link>
+
                     </div>
                     {/*Menu Section*/}
                     <div className="hidden md:block">
@@ -36,8 +41,7 @@ const NavBar:React.FC<INavBar> = (props) => {
                     {/*Support Button*/}
                     <div>
                         <div className="flex items-center">
-                            <Button text={"Give Support >"} onClick={() => {
-                            }} type="blue"></Button>
+                            <Button text={"Give Support >"} onClick={navigateToDonation} type="blue"></Button>
                             <span className="block md:hidden">
                                 <Button  text={buttonIcon} onClick={toggleMenu} textSize="text-2xl"></Button>
                             </span>

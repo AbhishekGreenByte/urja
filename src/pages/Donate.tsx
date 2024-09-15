@@ -1,16 +1,16 @@
 import NavBar from "../components/NavBar";
-import { Carousel } from "flowbite-react";
 
-const Home:React.FC = () => {
+const Donate:React.FC = () => {
     return (
         <div>
             <NavBar active="Home"/>
             <div className="absolute top-16">
-                ABC Company
+                DONATE NOW
+                QR CODE
+                Send Us Email
             </div>
-
         </div>
     )
 }
 
-export default Home;
+export default Donate;
