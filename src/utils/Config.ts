@@ -14,9 +14,6 @@ class Config {
     private companyName = "URJA";
     private defaultRoute = "/";
     private routerPrefix = "/urja";
-    private pageComponent = [
-
-    ]
     private components: Map<string, IPage> = new Map([
         ['Default', {label: 'Default', router: '/', showMenu: false, component: Home}],
         ['Home', {label: 'Home', router: '/home', showMenu: true, component: Home}],

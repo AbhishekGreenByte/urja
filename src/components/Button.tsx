@@ -17,7 +17,7 @@ const Button:React.FC<IButtonProps> = (props) => {
         case 'borderless':
         default:
             return (
-                <button className={`py-2 p-4 text-primary rounded-lg bg-white hover:bg-successLight cursor-pointer ${textSize}`} onClick = {props.onClick}>{props.text}</button>
+                <button className={`py-2 p-4 text-primary rounded-lg bg-white cursor-pointer ${textSize}`} onClick = {props.onClick}>{props.text}</button>
             )
     }
 }

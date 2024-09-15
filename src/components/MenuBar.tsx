@@ -7,12 +7,12 @@ const MenuBar:React.FC<IMenuBar> = (props) => {
     switch (props.type) {
         case "column":
             return (
-                <div className="flex items-center md:gap-16 p-2">
+                <div className="flex items-center md:gap-16 p-2 text-primary">
                     {
                         config.getMenuItems().map((item, index) => {
                             return (
                                 <div key={index}
-                                     className={`cursor-pointer text-primary hover:text-secondary hover:text-lg ${props.active && props.active === item ? 'text-error' : ''}`}>
+                                     className={`cursor-pointer hover:text-secondary hover:text-lg ${props.active && props.active === item ? 'text-error' : ''}`}>
                                     <Link to={config.getMenuItemRoute(item)}>{item}</Link>
                                 </div>
                             )
@@ -27,10 +27,10 @@ const MenuBar:React.FC<IMenuBar> = (props) => {
                         {
                             config.getMenuItems().map((item, index) => {
                                 return (
-                                    <div className="w-full text-black" key={index}>
+                                    <div className="w-full text-white" key={index}>
                                         <Link to={config.getMenuItemRoute(item)}>
-                                            <div className="flex items-center justify-center w-full cursor-pointer border rounded-lg bg-yellow-50 hover:bg-white">
-                                                <div className={` p-2  ${props.active && props.active === item ? 'text-error' : ''}`}>
+                                            <div className="flex items-center  justify-center w-full cursor-pointer border rounded-lg bg-lightPrimary">
+                                                <div className={` p-2  ${props.active && props.active === item ? 'text-gray-200' : ''}`}>
                                                     {item}
                                                 </div>
                                             </div>
