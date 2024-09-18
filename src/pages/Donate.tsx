@@ -1,32 +1,46 @@
 import NavBar from "../components/NavBar";
-import React, {ChangeEvent, useState} from 'react';
-import { FaQrcode, FaUniversity } from 'react-icons/fa';
+import React, {useState} from 'react';
+import {FaQrcode, FaUniversity} from 'react-icons/fa';
 import {config} from "../utils/Config";
+import {UpiApps} from "../utils/models";
+import { FaWhatsapp } from "react-icons/fa";
+import { SiPhonepe, SiGooglepay, SiPaytm } from "react-icons/si";
 
 const Donate:React.FC = () => {
 
     const [donationMethod, setDonationMethod] = useState<string>('');
-    const [amount, setAmount] = useState<string>('');
+    const [appType, setAppType] = useState<UpiApps>(UpiApps.PHONEPE);
+
+    const buttons = [
+        { name: "PhonePe", icon: SiPhonepe, color: "bg-purple-600", value: UpiApps.PHONEPE },
+        { name: "GPay", icon: SiGooglepay, color: "bg-green-500", value: UpiApps.GPAY },
+        { name: "Paytm", icon: SiPaytm, color: "bg-blue-500", value: UpiApps.PAYTM },
+        { name: "WhatsApp", icon: FaWhatsapp, color: "bg-green-400", value: UpiApps.WHATSAPP },
+    ];
+
 
     const handleMethodChange = (method: string) => {
         setDonationMethod(method);
-        setAmount('');
     };
 
     const handleUpiCall = () => {
-        let url = "";
-        if(amount == ""){
-            url = config.getUpiWithoutAmountLink();
-        }
-        else{
-            url = config.getUpiWithAmountLink(amount);
+        let url ="";
+        switch (appType) {
+            case UpiApps.PHONEPE:
+                url = config.getPhonepeLink();
+                break;
+            case UpiApps.GPAY:
+                url = config.getGpayLink();
+                break;
+            case UpiApps.PAYTM:
+                url = config.getPtmLink();
+                break;
+            default:
+                url = config.getWhatsappLink();
         }
         window.open(url, "_blank", "noopener,noreferrer");
     }
 
-    const handleAmountChange = (e: ChangeEvent<HTMLInputElement>) => {
-        setAmount(e.target.value);
-    };
 
     return (
         <div>
@@ -70,48 +84,41 @@ const Donate:React.FC = () => {
                                 {donationMethod === 'UPI' && (
                                     <div className="space-y-4">
                                         <div className="flex justify-center">
-                                            <a target="_blank" rel="noopener noreferrer"
-                                               href={config.getUpiWithoutAmountLink()}>
-                                                <img
-                                                    src={config.getImageUrl("qrcode")}
-                                                    alt="QR Code"
-                                                    className="w-48 h-48 object-cover rounded-lg shadow-md"
-                                                />
-                                            </a>
+                                            <img
+                                                src={config.getImageUrl("qrcode")}
+                                                alt="QR Code"
+                                                className="w-48 h-48 object-cover rounded-lg shadow-md"
+                                            />
                                         </div>
-                                        <div
-                                            className="flex justify-center">
-                                            <a target="_blank" rel="noopener noreferrer"
-                                               href={config.getUpiWithoutAmountLink()}>
-                                                <span className="font-medium text-gray-600 cursor-pointer">{config.getPaymentDetails().upi}</span>
-                                            </a>
+                                        <div className="flex justify-center">
+                                            <span className="font-medium text-gray-600 cursor-pointer">{config.getPaymentDetails().upi}</span>
                                         </div>
                                         <div
                                             className="flex justify-center text-center font-medium text-gray-600">
-                                            <a target="_blank" rel="noopener noreferrer"
-                                               href={config.getUpiWithoutAmountLink()}>{config.getPaymentDetails().name}</a>
+                                            {config.getPaymentDetails().name}
                                         </div>
 
                                         <div
                                             className="flex justify-center text-center">OR
                                         </div>
-                                        <div>
-                                            <input
-                                                id="amount"
-                                                name="amount"
-                                                type="number"
-                                                className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                                                placeholder="Enter Amount"
-                                                value={amount}
-                                                onChange={handleAmountChange}
-                                            />
+                                        <div className="flex justify-center items-center gap-2">
+                                            {buttons.map((button) => (
+                                                <button
+                                                    key={button.name}
+                                                    className={`${button.color} text-white w-8 h-8 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-full flex items-center justify-center shadow-lg transform transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-${button.color.split('-')[1]}-400 active:scale-95`}
+                                                    aria-label={`Pay with ${button.name}`}
+                                                    onClick={() => setAppType(button.value)}
+                                                >
+                                                    <button.icon className="text-2xl md:text-3xl lg:text-4xl" />
+                                                </button>
+                                            ))}
                                         </div>
                                         <button
                                             type="submit"
                                             onClick={handleUpiCall}
                                             className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                                         >
-                                            Donate via UPI
+                                            Donate via {appType}
                                         </button>
                                     </div>
                                 )}

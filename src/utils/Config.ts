@@ -21,8 +21,10 @@ class Config {
 
     private companyName = "URJA";
     private paymentDetails: IPaymentDetails;
-    private upiLinkWithoutAmount ='upi://pay?pa={PAYEE_UPI}&pn={PAYEE_NAME}&cu=INR';
-    private upiLink ='upi://pay?pa={{PAYEE_UPI}&pn={PAYEE_NAME}&am={AMOUNT}&cu=INR';
+    private phonepeLink = 'phonepe://upi/pay?pa={PAYEE_UPI}&pn={PAYEE_NAME}&cu=INR';
+    private whatsappLink = 'upi//pay?pa={{PAYEE_UPI}&pn={PAYEE_NAME}&am={AMOUNT}&cu=INR';
+    private gpayLink = 'tez://upi/pay?pa={PAYEE_UPI}&pn={PAYEE_NAME}&cu=INR';
+    private paytmLink = 'paytm://upi/pay?pa={PAYEE_UPI}&pn={PAYEE_NAME}&cu=INR';
 
 
     private defaultRoute = "/";
@@ -96,17 +98,28 @@ class Config {
         return this.paymentDetails;
     }
 
-    public getUpiWithoutAmountLink(): string {
-        return this.upiLinkWithoutAmount
+    public getPhonepeLink(): string {
+        return this.phonepeLink
             .replace('{PAYEE_UPI}',this.paymentDetails.upi)
             .replace('{PAYEE_NAME}',this.paymentDetails.name);
     }
 
-    public getUpiWithAmountLink(amount:string): string {
-        return this.upiLink
+    public getWhatsappLink(): string {
+        return this.whatsappLink
             .replace('{PAYEE_UPI}',this.paymentDetails.upi)
-            .replace('{PAYEE_NAME}',this.paymentDetails.name)
-            .replace('{AMOUNT}',amount);
+            .replace('{PAYEE_NAME}',this.paymentDetails.name);
+    }
+
+    public getGpayLink(): string {
+        return this.gpayLink
+            .replace('{PAYEE_UPI}',this.paymentDetails.upi)
+            .replace('{PAYEE_NAME}',this.paymentDetails.name);
+    }
+
+    public getPtmLink(): string {
+        return this.paytmLink
+            .replace('{PAYEE_UPI}',this.paymentDetails.upi)
+            .replace('{PAYEE_NAME}',this.paymentDetails.name);
     }
 
 }

@@ -29,3 +29,10 @@ export interface IPaymentDetails{
     email: string,
     address: string
 }
+
+export enum UpiApps {
+    PHONEPE = "PhonePe",
+    GPAY = "Google Pay",
+    PAYTM = "Paytm",
+    WHATSAPP = "WhatsApp"
+}
