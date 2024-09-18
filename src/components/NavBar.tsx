@@ -19,7 +19,7 @@ const Navbar:React.FC<INavBarProps> = (props) => {
             <div className="container mx-auto px-4 w-full h-full">
                 <div className="flex justify-center items-center w-full h-full">
                     <div className="flex justify-between items-center w-full h-full ">
-                        <div className="text-xl font-bold">Logo</div>
+                        <div className="text-xl font-bold">{config.getCompanyName()}</div>
                         <div className="hidden md:flex items-center space-x-6">
                             {menuItems.map((item, index) => (
                                 <Link key={index} to={config.getMenuItemRoute(item)}>
