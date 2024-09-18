@@ -1,11 +1,11 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { HashRouter as Router, Route, Routes } from "react-router-dom";
 import {config} from "../utils/Config";
 import React from "react";
 
 const App:React.FC = () => {
 
     return (
-        <Router basename="/urja">
+        <Router>
             <Routes>
                 {
                     config.getAllPages().map((item, index) => {
