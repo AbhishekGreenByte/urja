@@ -32,7 +32,7 @@ export interface IPaymentDetails{
 
 export enum UpiApps {
     PHONEPE = "PhonePe",
-    GPAY = "Google Pay",
+    GPAY = "GPay",
     PAYTM = "Paytm",
     UPI = "UPI"
 }
