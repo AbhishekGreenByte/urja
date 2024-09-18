@@ -98,11 +98,11 @@ const Donate:React.FC = () => {
                                             {config.getPaymentDetails().name}
                                         </div>
 
-                                        <div className="flex justify-center items-center gap-2">
+                                        <div className="flex justify-center items-center gap-6">
                                             {buttons.map((button) => (
                                                 <button
                                                     key={button.name}
-                                                    className={`${button.color} text-white w-8 h-8 md:w-16 md:h-16 rounded-full flex items-center justify-center shadow-lg transform transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-${button.color.split('-')[1]}-400 active:scale-95`}
+                                                    className={`${button.color} text-white w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center shadow-lg transform transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-${button.color.split('-')[1]}-400 active:scale-95`}
                                                     aria-label={`Pay with ${button.name}`}
                                                     onClick={() => setAppType(button.value)}
                                                 >
