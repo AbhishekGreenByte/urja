@@ -71,7 +71,7 @@ class Config {
     }
 
     public getDefaultRoute(): string {
-        return this.routerPrefix + this.defaultRoute;
+        return this.defaultRoute;
     }
 
     public getComponent(name: string): React.ComponentType | undefined {

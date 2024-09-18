@@ -15,15 +15,23 @@ const Navbar:React.FC<INavBarProps> = (props) => {
     const menuItems = config.getMenuItems();
 
     return (
-        <nav className="bg-white shadow-lg fixed w-full h-16 top-0 z-10 ">
+        <nav className="bg-[#F6F6F6] shadow-lg fixed w-full h-16 top-0 z-10 ">
             <div className="container mx-auto px-4 w-full h-full">
                 <div className="flex justify-center items-center w-full h-full">
                     <div className="flex justify-between items-center w-full h-full ">
-                        <div className="text-xl font-bold">{config.getCompanyName()}</div>
+                        <Link to={config.getDefaultRoute()}>
+                            <div className="flex justify-center items-center cursor-pointer">
+                                <img src={config.getImageUrl("logo")} className="w-12 h-12 object-cover"/>
+                                <div className="text-xl font-medium text-gray-600">
+                                    {config.getCompanyName()}
+                                </div>
+                            </div>
+                        </Link>
                         <div className="hidden md:flex items-center space-x-6">
                             {menuItems.map((item, index) => (
                                 <Link key={index} to={config.getMenuItemRoute(item)}>
-                                    <div className={`flex items-center justify-center hover:text-primary transition duration-300 ${props.active && props.active === item ? 'text-primary' : 'text-gray-600'}`}>
+                                    <div
+                                        className={`flex items-center justify-center hover:text-primary transition duration-300 ${props.active && props.active === item ? 'text-primary' : 'text-gray-600'}`}>
                                         {<span
                                             className="mr-2">{React.createElement(config.getIcon(item) as IconType)}</span>}
                                         <span>{item}</span>
