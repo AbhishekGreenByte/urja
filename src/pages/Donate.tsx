@@ -98,9 +98,6 @@ const Donate:React.FC = () => {
                                             {config.getPaymentDetails().name}
                                         </div>
 
-                                        <div
-                                            className="flex justify-center text-center">OR
-                                        </div>
                                         <div className="flex justify-center items-center gap-2">
                                             {buttons.map((button) => (
                                                 <button
