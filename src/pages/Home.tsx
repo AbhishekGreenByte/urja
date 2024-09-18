@@ -5,8 +5,8 @@ const Home:React.FC = () => {
     return (
         <div>
             <NavBar active="Home"/>
-            <div className="absolute top-16">
-                ABC Company
+            <div className="pt-16 bg-gray-50 w-full h-screen">
+                Home Page
             </div>
 
         </div>

@@ -1,60 +1,91 @@
-import Button from "./Button";
+import React, {useState} from 'react';
+import {FaHome, FaCalendarAlt, FaInfoCircle, FaEnvelope, FaBars} from 'react-icons/fa';
 import {config} from "../utils/Config";
-import {INavBar} from "../utils/models";
-import MenuBar from "./MenuBar";
-import {useState} from "react";
 import {Link} from "react-router-dom";
-import {useNavigateToDonation} from "../utils/utils";
+import {IconType} from "react-icons/lib/iconBase";
+import {INavBarProps} from "../utils/models";
 
-const NavBar:React.FC<INavBar> = (props) => {
-    let [buttonIcon,setButtonIcon] = useState("☰");
-    const navigateToDonation = useNavigateToDonation();
+const Navbar:React.FC<INavBarProps> = (props) => {
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+
     const toggleMenu = () => {
-        const menu = document.getElementById('menu-chart');
-        if (menu){
-            if (menu.classList.contains('block')){
-                menu.classList.remove('block');
-                menu.classList.add('hidden');
-                setButtonIcon("☰");
-            }else{
-                menu.classList.remove('hidden');
-                menu.classList.add('block');
-                setButtonIcon("✖");
-            }
-        }
-    }
+        setIsMenuOpen(!isMenuOpen);
+    };
+
+    const menuItems = config.getMenuItems();
+
     return (
-        <div className="w-full bg-bgLight col flex items-center flex-col absolute top-0 z-10 bg-white shadow-lg">
-            <div className="w-full max-w-screen-xl h-16 px-2">
-                <div className="w-full h-full flex items-center justify-between ">
-                    {/*Logo Section*/}
-                    <div>
-                        <Link to={config.getDefaultRoute()}>
-                            {config.getCompanyName()}
-                        </Link>
+        <nav className="bg-white shadow-lg absolute w-full h-16 top-0 z-10 ">
+            <div className="container mx-auto px-4 w-full h-full">
+                <div className="flex justify-center items-center w-full h-full">
+                    <div className="flex justify-between items-center w-full h-full ">
+                        <div className="text-xl font-bold">Logo</div>
+                        <div className="hidden md:flex items-center space-x-6">
+                            {menuItems.map((item, index) => (
+                                <Link key={index} to={config.getMenuItemRoute(item)}>
+                                    <div className={`flex items-center justify-center hover:text-primary transition duration-300 ${props.active && props.active === item ? 'text-primary' : 'text-gray-600'}`}>
+                                        {<span
+                                            className="mr-2">{React.createElement(config.getIcon(item) as IconType)}</span>}
+                                        <span>{item}</span>
+                                    </div>
 
-                    </div>
-                    {/*Menu Section*/}
-                    <div className="hidden md:block">
-                        <MenuBar active={props.active} type='column'/>
-                    </div>
-                    {/*Support Button*/}
-                    <div>
-                        <div className="flex items-center">
-                            <Button text={"Give Support >"} onClick={navigateToDonation} type="blue"></Button>
-                            <span className="block md:hidden">
-                                <Button  text={buttonIcon} onClick={toggleMenu} textSize="text-2xl"></Button>
-                            </span>
-
+                                </Link>
+                            ))}
+                        </div>
+                        <div>
+                            <Link to={config.getMenuItemRoute(config.getDonateString())}>
+                                <button
+                                    className={`hidden ${props.active && props.active === "Donate" ? '' : 'md:block'} bg-primary text-white px-4 py-2 rounded hover:bg-lightPrimary transition duration-300`}>
+                                    <div className="flex items-center justify-center">
+                                        <span
+                                            className="mr-2">{React.createElement(config.getIcon(config.getDonateString()) as IconType)}</span>
+                                        <span>{config.getDonateString()}</span>
+                                    </div>
+                                </button>
+                            </Link>
                         </div>
 
+                        <button
+                            className="md:hidden text-gray-600 hover:text-gray-900 focus:outline-none"
+                            onClick={toggleMenu}
+                            aria-label="Toggle menu"
+                        >
+                            <FaBars size={24}/>
+                        </button>
                     </div>
                 </div>
             </div>
-            <div className="hidden md:hidden w-full max-w-screen-xl h-[300px] px-2 z-10 bg-gray-50" id='menu-chart'>
-                <MenuBar active={props.active} type='row'/>
+            {/* Mobile menu */}
+            <div
+                className={`md:hidden ${
+                    isMenuOpen ? 'block' : 'hidden'
+                } bg-white w-full shadow-md transition-all duration-300 ease-in-out pt-3`}
+            >
+                <div className="container mx-auto px-4 py-2">
+                    {menuItems.map((item, index) => (
+                        <Link key={index} to={config.getMenuItemRoute(item)}>
+                            <div className={`flex items-center text-gray-600 hover:text-primary py-2 transition duration-300 ${props.active && props.active === item ? 'text-primary' : 'text-gray-600'}`}>
+                                {<span
+                                    className="mr-2">{React.createElement(config.getIcon(item) as IconType)}</span>}
+                                <span>{item}</span>
+                            </div>
+
+                        </Link>
+                    ))}
+
+                    <Link to={config.getMenuItemRoute(config.getDonateString())}>
+                        <button
+                            className={`${props.active && props.active === "Donate" ? 'hidden' : ''} bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition duration-300 w-full mt-2`}>
+                            <div className="flex items-center justify-center">
+                                <span className="mr-2">{React.createElement(config.getIcon(config.getDonateString()) as IconType)}</span>
+                                <span>{config.getDonateString()}</span>
+                            </div>
+                        </button>
+                    </Link>
+                </div>
             </div>
-        </div>
-    )
-}
-export default NavBar;
+        </nav>
+    );
+};
+
+export default Navbar;

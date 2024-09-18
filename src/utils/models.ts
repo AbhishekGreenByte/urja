@@ -1,24 +1,14 @@
 import React from "react";
-
-export interface IButtonProps {
-    text: string,
-    onClick: ()=>void,
-    type?: string,
-    textSize?: string
-}
-
-export interface IMenuBar {
-    active?: string,
-    type: 'row' | 'column',
-}
-
-export interface INavBar {
-    active?: string
-}
+import {IconType} from "react-icons/lib/iconBase";
 
 export interface IPage {
     label: string,
     router: string,
     showMenu: boolean,
     component: React.ComponentType
+    icon?: IconType
+}
+
+export interface INavBarProps {
+    active?: string
 }

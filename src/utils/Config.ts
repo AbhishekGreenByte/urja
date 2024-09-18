@@ -1,9 +1,11 @@
 import Contact from "../pages/Contact";
 import About from "../pages/About";
 import Home from "../pages/Home";
-import Services from "../pages/Services";
+import Events from "../pages/Events";
 import {IPage} from "./models";
 import Donate from "../pages/Donate";
+import {FaHome, FaCalendarAlt, FaInfoCircle, FaEnvelope, FaBars, FaDonate} from 'react-icons/fa';
+import {IconType} from "react-icons/lib/iconBase";
 
 class Config {
     private static _instance: Config;
@@ -15,13 +17,15 @@ class Config {
     private companyName = "URJA";
     private defaultRoute = "/";
     private routerPrefix = "/urja";
+    private donate ="Donate";
+
     private components: Map<string, IPage> = new Map([
         ['Default', {label: 'Default', router: '/', showMenu: false, component: Home}],
-        ['Home', {label: 'Home', router: '/home', showMenu: true, component: Home}],
-        ['About', {label: 'About', router: '/about', showMenu: true, component: About}],
-        ['Contact', {label: 'Contact', router: '/contact', showMenu: true, component: Contact}],
-        ['Services', {label: 'Services', router: '/services', showMenu: true, component: Services}],
-        ['Donation', {label: 'Donation', router: '/donation', showMenu: false, component: Donate}]
+        ['Home', {label: 'Home', router: '/home', showMenu: true, component: Home, icon: FaHome}],
+        ['Events', {label: 'Events', router: '/events', showMenu: true, component: Events, icon: FaCalendarAlt}],
+        ['About', {label: 'About', router: '/about', showMenu: true, component: About, icon: FaInfoCircle}],
+        ['Contact', {label: 'Contact', router: '/contact', showMenu: true, component: Contact, icon: FaEnvelope}],
+        ['Donate', {label: 'Donate', router: '/donate', showMenu: false, component: Donate, icon: FaDonate}]
     ]);
 
 
@@ -35,6 +39,10 @@ class Config {
     public getMenuItems(): string[] {
         // allow only items that have showMenu set to true
         return Array.from(this.components.values()).filter(item => item.showMenu).map(item => item.label);
+    }
+
+    public getDonateString(): string {
+        return this.donate;
     }
 
     public getMenuItemRoute(name:string): string {
@@ -56,6 +64,10 @@ class Config {
     public getComponent(name: string): React.ComponentType | undefined {
        // Return the component if it exists
         return this.components.get(name)?.component;
+    }
+
+    public getIcon(name: string): IconType | undefined {
+        return this.components.get(name)?.icon;
     }
 
 }
