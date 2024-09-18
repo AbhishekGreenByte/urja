@@ -54,7 +54,7 @@ class Config {
     }
 
     public getMenuItemRoute(name:string): string {
-        return this.routerPrefix + (this.components.get(name)?.router || this.defaultRoute);
+        return this.components.get(name)?.router || this.defaultRoute;
     }
 
     public getAllPages():string[] {

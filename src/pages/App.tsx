@@ -5,7 +5,7 @@ import React from "react";
 const App:React.FC = () => {
 
     return (
-        <Router>
+        <Router basename="/urja">
             <Routes>
                 {
                     config.getAllPages().map((item, index) => {
