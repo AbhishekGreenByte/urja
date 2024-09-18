@@ -21,6 +21,9 @@ class Config {
 
     private companyName = "URJA";
     private paymentDetails: IPaymentDetails;
+    private upiLinkWithoutAmount ='upi://pay?pa={PAYEE_UPI}&pn={PAYEE_NAME}&cu=INR';
+    private upiLink ='upi://pay?pa={{PAYEE_UPI}&pn={PAYEE_NAME}&am={AMOUNT}&cu=INR';
+
 
     private defaultRoute = "/";
     private routerPrefix = "/urja";
@@ -80,7 +83,6 @@ class Config {
 
     public loadImageJson(){
         this.imageJson.clear();
-        console.log("dssd",imageData)
         imageData.images.forEach((item: IImageJson) => {
             this.imageJson.set(item.name, item);
         });
@@ -92,6 +94,19 @@ class Config {
 
     public getPaymentDetails(): IPaymentDetails {
         return this.paymentDetails;
+    }
+
+    public getUpiWithoutAmountLink(): string {
+        return this.upiLinkWithoutAmount
+            .replace('{PAYEE_UPI}',this.paymentDetails.upi)
+            .replace('{PAYEE_NAME}',this.paymentDetails.name);
+    }
+
+    public getUpiWithAmountLink(amount:string): string {
+        return this.upiLink
+            .replace('{PAYEE_UPI}',this.paymentDetails.upi)
+            .replace('{PAYEE_NAME}',this.paymentDetails.name)
+            .replace('{AMOUNT}',amount);
     }
 
 }
