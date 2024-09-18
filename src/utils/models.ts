@@ -36,3 +36,7 @@ export enum UpiApps {
     PAYTM = "Paytm",
     WHATSAPP = "WhatsApp"
 }
+
+export interface QRCodeGeneratorProps {
+    link: string;
+}

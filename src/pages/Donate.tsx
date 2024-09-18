@@ -5,6 +5,8 @@ import {config} from "../utils/Config";
 import {UpiApps} from "../utils/models";
 import { FaWhatsapp } from "react-icons/fa";
 import { SiPhonepe, SiGooglepay, SiPaytm } from "react-icons/si";
+import QrCode from "../components/QrCode";
+import {getUpiAppLink} from "../utils/utils";
 
 const Donate:React.FC = () => {
 
@@ -22,6 +24,10 @@ const Donate:React.FC = () => {
     const handleMethodChange = (method: string) => {
         setDonationMethod(method);
     };
+
+    const getUpiLink = () => {
+        return getUpiAppLink(appType);
+    }
 
     const handleUpiCall = () => {
         let url ="";
@@ -84,11 +90,7 @@ const Donate:React.FC = () => {
                                 {donationMethod === 'UPI' && (
                                     <div className="space-y-4">
                                         <div className="flex justify-center">
-                                            <img
-                                                src={config.getImageUrl("qrcode")}
-                                                alt="QR Code"
-                                                className="w-48 h-48 object-cover rounded-lg shadow-md"
-                                            />
+                                            <QrCode link={getUpiLink()} />
                                         </div>
                                         <div className="flex justify-center">
                                             <span className="font-medium text-gray-600 cursor-pointer">{config.getPaymentDetails().upi}</span>
