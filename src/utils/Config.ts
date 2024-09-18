@@ -2,22 +2,30 @@ import Contact from "../pages/Contact";
 import About from "../pages/About";
 import Home from "../pages/Home";
 import Events from "../pages/Events";
-import {IPage} from "./models";
+import {IImageJson, IPage, IPaymentDetails} from "./models";
 import Donate from "../pages/Donate";
 import {FaHome, FaCalendarAlt, FaInfoCircle, FaEnvelope, FaBars, FaDonate} from 'react-icons/fa';
 import {IconType} from "react-icons/lib/iconBase";
+import imageData from '../resources/images.json';
+import paymentDetails from '../resources/upiDetails.json';
 
 class Config {
     private static _instance: Config;
 
     private constructor() {
         // private constructor to prevent instantiation
+        this.imageJson = new Map<string, IImageJson>();
+        this.loadImageJson();
+        this.paymentDetails = paymentDetails;
     }
 
     private companyName = "URJA";
+    private paymentDetails: IPaymentDetails;
+
     private defaultRoute = "/";
     private routerPrefix = "/urja";
     private donate ="Donate";
+    private imageJson:Map<string,IImageJson>;
 
     private components: Map<string, IPage> = new Map([
         ['Default', {label: 'Default', router: '/', showMenu: false, component: Home}],
@@ -68,6 +76,22 @@ class Config {
 
     public getIcon(name: string): IconType | undefined {
         return this.components.get(name)?.icon;
+    }
+
+    public loadImageJson(){
+        this.imageJson.clear();
+        console.log("dssd",imageData)
+        imageData.images.forEach((item: IImageJson) => {
+            this.imageJson.set(item.name, item);
+        });
+    }
+
+    public getImageUrl(name:string):string{
+        return this.imageJson.get(name)?.url || "";
+    }
+
+    public getPaymentDetails(): IPaymentDetails {
+        return this.paymentDetails;
     }
 
 }

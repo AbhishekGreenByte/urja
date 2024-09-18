@@ -15,7 +15,7 @@ const Navbar:React.FC<INavBarProps> = (props) => {
     const menuItems = config.getMenuItems();
 
     return (
-        <nav className="bg-white shadow-lg absolute w-full h-16 top-0 z-10 ">
+        <nav className="bg-white shadow-lg fixed w-full h-16 top-0 z-10 ">
             <div className="container mx-auto px-4 w-full h-full">
                 <div className="flex justify-center items-center w-full h-full">
                     <div className="flex justify-between items-center w-full h-full ">

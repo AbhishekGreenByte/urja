@@ -12,3 +12,20 @@ export interface IPage {
 export interface INavBarProps {
     active?: string
 }
+
+export interface IImageJson{
+    name:string,
+    url:string
+}
+
+export interface IPaymentDetails{
+    upi: string,
+    name: string,
+    bank: string,
+    ifsc: string,
+    accountNumber: string,
+    mobile: string,
+    contact: string,
+    email: string,
+    address: string
+}

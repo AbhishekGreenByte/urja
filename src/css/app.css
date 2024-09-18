@@ -114,3 +114,20 @@
     font-style: italic;
 }
 
+/*Hide Scroll Bar*/
+/* For modern browsers (including Chrome, Edge, and Safari) */
+::-webkit-scrollbar {
+    display: none; /* Hides the scrollbar */
+}
+
+/* For Firefox */
+html {
+    scrollbar-width: none; /* Hides the scrollbar */
+}
+
+/* General CSS to ensure scrollable but no visible scrollbar */
+body {
+    overflow: -moz-scrollbars-none;
+    -ms-overflow-style: none; /* IE and Edge */
+}
+
