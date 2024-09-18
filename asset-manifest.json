@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/urja/static/css/main.a2b172af.css",
-    "main.js": "/urja/static/js/main.12184a17.js",
+    "main.js": "/urja/static/js/main.c295109d.js",
     "static/js/453.233a72fa.chunk.js": "/urja/static/js/453.233a72fa.chunk.js",
     "index.html": "/urja/index.html",
     "main.a2b172af.css.map": "/urja/static/css/main.a2b172af.css.map",
-    "main.12184a17.js.map": "/urja/static/js/main.12184a17.js.map",
+    "main.c295109d.js.map": "/urja/static/js/main.c295109d.js.map",
     "453.233a72fa.chunk.js.map": "/urja/static/js/453.233a72fa.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.a2b172af.css",
-    "static/js/main.12184a17.js"
+    "static/js/main.c295109d.js"
   ]
 }
