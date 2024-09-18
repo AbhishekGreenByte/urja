@@ -19,9 +19,9 @@ export const getUpiAppLink = (appType: UpiApps) => {
         case UpiApps.PAYTM:
             url = config.getPtmLink();
             break;
-        case UpiApps.WHATSAPP:
+        case UpiApps.UPI:
         default:
-            url = config.getWhatsappLink();
+            url = config.getUpiLink();
     }
     return url;
 }

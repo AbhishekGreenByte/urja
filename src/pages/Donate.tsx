@@ -11,13 +11,13 @@ import {getUpiAppLink} from "../utils/utils";
 const Donate:React.FC = () => {
 
     const [donationMethod, setDonationMethod] = useState<string>('');
-    const [appType, setAppType] = useState<UpiApps>(UpiApps.PHONEPE);
+    const [appType, setAppType] = useState<UpiApps>(UpiApps.UPI);
 
     const buttons = [
+        { name: "UPI", icon: FaQrcode, color: "bg-green-400", value: UpiApps.UPI },
         { name: "PhonePe", icon: SiPhonepe, color: "bg-purple-600", value: UpiApps.PHONEPE },
         { name: "GPay", icon: SiGooglepay, color: "bg-green-500", value: UpiApps.GPAY },
         { name: "Paytm", icon: SiPaytm, color: "bg-blue-500", value: UpiApps.PAYTM },
-        { name: "WhatsApp", icon: FaWhatsapp, color: "bg-green-400", value: UpiApps.WHATSAPP },
     ];
 
 
@@ -30,20 +30,7 @@ const Donate:React.FC = () => {
     }
 
     const handleUpiCall = () => {
-        let url ="";
-        switch (appType) {
-            case UpiApps.PHONEPE:
-                url = config.getPhonepeLink();
-                break;
-            case UpiApps.GPAY:
-                url = config.getGpayLink();
-                break;
-            case UpiApps.PAYTM:
-                url = config.getPtmLink();
-                break;
-            default:
-                url = config.getWhatsappLink();
-        }
+        let url = getUpiLink();
         window.open(url, "_blank", "noopener,noreferrer");
     }
 
@@ -117,7 +104,7 @@ const Donate:React.FC = () => {
                                             onClick={handleUpiCall}
                                             className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                                         >
-                                            Donate via {appType}
+                                            Click Here to Donate via {appType}
                                         </button>
                                     </div>
                                 )}

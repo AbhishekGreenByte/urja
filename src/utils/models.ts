@@ -34,7 +34,7 @@ export enum UpiApps {
     PHONEPE = "PhonePe",
     GPAY = "Google Pay",
     PAYTM = "Paytm",
-    WHATSAPP = "WhatsApp"
+    UPI = "UPI"
 }
 
 export interface QRCodeGeneratorProps {

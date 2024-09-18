@@ -22,7 +22,7 @@ class Config {
     private companyName = "URJA";
     private paymentDetails: IPaymentDetails;
     private phonepeLink = 'phonepe://upi/pay?pa={PAYEE_UPI}&pn={PAYEE_NAME}&cu=INR';
-    private whatsappLink = 'upi://pay?pa={PAYEE_UPI}&pn={PAYEE_NAME}&cu=INR'
+    private upiLink = 'upi://pay?pa={PAYEE_UPI}&pn={PAYEE_NAME}&cu=INR'
     private gpayLink = 'tez://upi/pay?pa={PAYEE_UPI}&pn={PAYEE_NAME}&cu=INR';
     private paytmLink = 'paytm://upi/pay?pa={PAYEE_UPI}&pn={PAYEE_NAME}&cu=INR';
 
@@ -104,8 +104,8 @@ class Config {
             .replace('{PAYEE_NAME}',this.paymentDetails.name);
     }
 
-    public getWhatsappLink(): string {
-        return this.whatsappLink
+    public getUpiLink(): string {
+        return this.upiLink
             .replace('{PAYEE_UPI}',this.paymentDetails.upi)
             .replace('{PAYEE_NAME}',this.paymentDetails.name);
     }
