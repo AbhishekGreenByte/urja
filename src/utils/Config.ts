@@ -22,7 +22,7 @@ class Config {
     private companyName = "URJA";
     private paymentDetails: IPaymentDetails;
     private phonepeLink = 'phonepe://upi/pay?pa={PAYEE_UPI}&pn={PAYEE_NAME}&cu=INR';
-    private whatsappLink = 'upi//pay?pa={{PAYEE_UPI}&pn={PAYEE_NAME}&am={AMOUNT}&cu=INR';
+    private whatsappLink = 'upi//pay?pa={{PAYEE_UPI}&pn={PAYEE_NAME}&cu=INR';
     private gpayLink = 'tez://upi/pay?pa={PAYEE_UPI}&pn={PAYEE_NAME}&cu=INR';
     private paytmLink = 'paytm://upi/pay?pa={PAYEE_UPI}&pn={PAYEE_NAME}&cu=INR';
 
