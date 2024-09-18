@@ -22,9 +22,6 @@ const Navbar:React.FC<INavBarProps> = (props) => {
                         <Link to={config.getDefaultRoute()}>
                             <div className="flex justify-center items-center cursor-pointer">
                                 <img src={config.getImageUrl("logo")} className="w-12 h-12 object-cover"/>
-                                <div className="text-xl font-medium text-gray-600">
-                                    {config.getCompanyName()}
-                                </div>
                             </div>
                         </Link>
                         <div className="hidden md:flex items-center space-x-6">
