@@ -15,7 +15,7 @@ const TeamMemberCard: React.FC<ITeamMemberCardProps> = ({ member, onClick }) => 
             className="w-32 h-32 rounded-full object-cover mb-4"
         />
         <h3 className="text-lg font-semibold text-center">{member.name}</h3>
-        <p className="text-sm text-gray-600 text-center">{member.role}</p>
+        <p className="text-sm text-gray-600 text-center">{member.responsibility}</p>
     </div>
 );
 
