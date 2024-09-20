@@ -22,6 +22,14 @@ const LocationCard:React.FC = () => {
                         </a>
                     </div>
                     <div className="flex items-center">
+                        <a href={`tel:${config.getContact().alternativePhone}`}>
+                            <div className="flex items-center justify-center">
+                                <FaPhone className="text-blue-500 mr-3"/>
+                                <p className="text-gray-600">{config.getContact().alternativePhoneLabel}</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div className="flex items-center">
                         <a href={`mailto:${config.getContact().email}`}>
                             <div className="flex items-center justify-center">
                                 <FaEnvelope className="text-blue-500 mr-3"/>

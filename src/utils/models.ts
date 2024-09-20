@@ -1,4 +1,4 @@
-import React from "react";
+import React, {ReactNode} from "react";
 import {IconType} from "react-icons/lib/iconBase";
 
 export interface IPage {
@@ -58,4 +58,31 @@ export interface IContact {
     phoneLabel: string;
     phone: number
     email: string;
+    alternativePhoneLabel: string;
+    alternativePhone: number;
+}
+
+export interface ITeamMember{
+    id:string,
+    name:string,
+    role:string,
+    responsibility:string,
+    image:string,
+    details:string
+}
+
+export interface IAccordian {
+    title: string;
+    children: ReactNode;
+    defaultClose?:boolean;
+}
+
+export interface ITeamMemberCardProps {
+    member: ITeamMember;
+    onClick: (member: ITeamMember) => void;
+}
+
+export interface IDialogProps {
+    member: ITeamMember;
+    onClose: () => void;
 }

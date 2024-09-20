@@ -1,0 +1,50 @@
+[
+  {
+    "id": "b1",
+    "name": "Deepak Kumar Mohanty",
+    "role": "Board Member",
+    "responsibility": "President",
+    "image": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80",
+    "details": "Deepak Kumar Mohanty is a seasoned professional with over 15 years of experience in corporate strategy and finance."
+  },
+  {
+    "id": "b2",
+    "name": "Rudra Prasad Patro",
+    "role": "Board Member",
+    "responsibility": "Secretary",
+    "image": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80",
+    "details": "Rudra Prasad Patro is a seasoned professional with over 15 years of experience in corporate strategy and finance."
+  },
+  {
+    "id": "t1",
+    "name": "Abhishek Sahu",
+    "role": "Treasurer",
+    "responsibility": "Digital Promotions",
+    "image": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+    "details": "Abhishek Sahu is a certified public accountant with expertise in non-profit financial management."
+  },
+  {
+    "id": "t2",
+    "name": "Rupak Kumar Mohanty",
+    "role": "Treasurer",
+    "responsibility": "Digital Promotions",
+    "image": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+    "details": "Rupak Kumar Mohanty is a certified public accountant with expertise in non-profit financial management."
+  },
+  {
+    "id": "t3",
+    "name": "Gourav Mallik",
+    "role": "Treasurer",
+    "responsibility": "Designer",
+    "image": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+    "details": "Gourav Mallik is a certified public accountant with expertise in non-profit financial management."
+  },
+  {
+    "id": "v1",
+    "name": "B Janardan Reddy",
+    "role": "Volunteer",
+    "responsibility": "College Outreach",
+    "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80",
+    "details": "B Janardan Reddy is a dedicated volunteer who has been contributing his time and skills to our organization for the past 5 years."
+  }
+]

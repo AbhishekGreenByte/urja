@@ -2,13 +2,14 @@ import Contact from "../pages/Contact";
 import About from "../pages/About";
 import Home from "../pages/Home";
 import Events from "../pages/Events";
-import {IContact, IImageJson, IPage, IPaymentDetails} from "./models";
+import {IContact, IImageJson, IPage, IPaymentDetails, ITeamMember} from "./models";
 import Donate from "../pages/Donate";
 import {FaHome, FaCalendarAlt, FaInfoCircle, FaEnvelope, FaBars, FaDonate} from 'react-icons/fa';
 import {IconType} from "react-icons/lib/iconBase";
 import imageData from '../resources/images.json';
 import paymentDetails from '../resources/upiDetails.json';
 import contactJson from '../resources/contact.json';
+import teamJson from '../resources/team.json';
 
 class Config {
     private static _instance: Config;
@@ -19,6 +20,7 @@ class Config {
         this.loadImageJson();
         this.paymentDetails = paymentDetails;
         this.contact = contactJson;
+        this.teamJson = teamJson;
     }
 
     private companyName = "URJA";
@@ -34,6 +36,7 @@ class Config {
     private donate ="Donate";
     private imageJson:Map<string,IImageJson>;
     private contact:IContact;
+    private teamJson: Array<ITeamMember>;
 
     private components: Map<string, IPage> = new Map([
         ['Default', {label: 'Default', router: '/', showMenu: false, component: Home}],
@@ -127,6 +130,10 @@ class Config {
 
     public getContact():IContact{
         return this.contact;
+    }
+
+    public getTeamMembers():Array<ITeamMember>{
+        return this.teamJson;
     }
 
 }
