@@ -2,12 +2,13 @@ import Contact from "../pages/Contact";
 import About from "../pages/About";
 import Home from "../pages/Home";
 import Events from "../pages/Events";
-import {IImageJson, IPage, IPaymentDetails} from "./models";
+import {IContact, IImageJson, IPage, IPaymentDetails} from "./models";
 import Donate from "../pages/Donate";
 import {FaHome, FaCalendarAlt, FaInfoCircle, FaEnvelope, FaBars, FaDonate} from 'react-icons/fa';
 import {IconType} from "react-icons/lib/iconBase";
 import imageData from '../resources/images.json';
 import paymentDetails from '../resources/upiDetails.json';
+import contactJson from '../resources/contact.json';
 
 class Config {
     private static _instance: Config;
@@ -17,6 +18,7 @@ class Config {
         this.imageJson = new Map<string, IImageJson>();
         this.loadImageJson();
         this.paymentDetails = paymentDetails;
+        this.contact = contactJson;
     }
 
     private companyName = "URJA";
@@ -31,6 +33,7 @@ class Config {
     private routerPrefix = "/urja";
     private donate ="Donate";
     private imageJson:Map<string,IImageJson>;
+    private contact:IContact;
 
     private components: Map<string, IPage> = new Map([
         ['Default', {label: 'Default', router: '/', showMenu: false, component: Home}],
@@ -120,6 +123,10 @@ class Config {
         return this.paytmLink
             .replace('{PAYEE_UPI}',this.paymentDetails.upi)
             .replace('{PAYEE_NAME}',this.paymentDetails.name);
+    }
+
+    public getContact():IContact{
+        return this.contact;
     }
 
 }

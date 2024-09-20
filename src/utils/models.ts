@@ -40,3 +40,22 @@ export enum UpiApps {
 export interface QRCodeGeneratorProps {
     link: string;
 }
+
+export interface IFormData {
+    name: string;
+    email: string;
+    subject: string;
+    message: string;
+}
+
+export interface IFormErrors {
+    email?: string;
+    name?: string;
+}
+
+export interface IContact {
+    address: string;
+    phoneLabel: string;
+    phone: number
+    email: string;
+}
