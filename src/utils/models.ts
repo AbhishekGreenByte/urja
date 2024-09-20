@@ -44,13 +44,14 @@ export interface QRCodeGeneratorProps {
 export interface IFormData {
     name: string;
     email: string;
-    subject: string;
+    mobile: string;
     message: string;
 }
 
 export interface IFormErrors {
-    email?: string;
-    name?: string;
+    email: string;
+    name: string;
+    mobile: string;
 }
 
 export interface IContact {

@@ -2,7 +2,7 @@ import Contact from "../pages/Contact";
 import About from "../pages/About";
 import Home from "../pages/Home";
 import Events from "../pages/Events";
-import {IContact, IImageJson, IPage, IPaymentDetails, ITeamMember} from "./models";
+import {IContact, IFormData, IImageJson, IPage, IPaymentDetails, ITeamMember} from "./models";
 import Donate from "../pages/Donate";
 import {FaHome, FaCalendarAlt, FaInfoCircle, FaEnvelope, FaBars, FaDonate} from 'react-icons/fa';
 import {IconType} from "react-icons/lib/iconBase";
@@ -37,6 +37,7 @@ class Config {
     private imageJson:Map<string,IImageJson>;
     private contact:IContact;
     private teamJson: Array<ITeamMember>;
+    private gformLink = "https://docs.google.com/forms/d/e/1FAIpQLScWk09-hN1a9iARyau6BBzBwMy913tlZa_sqUR8prvHmYTIGA/formResponse?usp=pp_url&entry.1148126186={NAME}&entry.1926984491={EMAIL}&entry.1008393767={PHONE}&entry.1460546303={MESSAGE}";
 
     private components: Map<string, IPage> = new Map([
         ['Default', {label: 'Default', router: '/', showMenu: false, component: Home}],
@@ -134,6 +135,14 @@ class Config {
 
     public getTeamMembers():Array<ITeamMember>{
         return this.teamJson;
+    }
+
+    public getGFormLinkUrl(formData:IFormData):string{
+        return this.gformLink
+            .replace('{NAME}',formData.name)
+            .replace('{EMAIL}',formData.email)
+            .replace('{MOBILE}',formData.mobile)
+            .replace('{MESSAGE}',formData.message);
     }
 
 }

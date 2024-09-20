@@ -1,58 +1,77 @@
-import React, { ChangeEvent, FormEvent, useState } from "react";
+import React, {ChangeEvent, FormEvent, useRef, useState} from "react";
 import { IFormData, IFormErrors } from "../utils/models";
+import {config} from "../utils/Config";
 
 const ContactForm: React.FC = () => {
     const [formData, setFormData] = useState<IFormData>({
         name: "",
         email: "",
-        subject: "",
+        mobile: "",
         message: "",
     });
 
-    const [errors, setErrors] = useState<IFormErrors>({});
+    const [errors, setErrors] = useState<IFormErrors>({
+        name: "",
+        email: "",
+        mobile: ""
+    });
     const [isFormValid, setIsFormValid] = useState<boolean>(false);
 
     const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
 
-        // Validate current field and the whole form
-        validateField(name, value);
-        validateForm({ ...formData, [name]: value }); // Validate the entire form after updating the field
+        // Update form data using the previous state
+        setFormData((prevFormData) => {
+            const updatedFormData = { ...prevFormData, [name]: value };
+
+            // Validate the field and get the updated error state
+            const updatedErrors = validateField(name, value);
+
+            // Validate the entire form using the updated error state and form data
+            validateForm(updatedFormData, updatedErrors);
+
+            return updatedFormData;
+        });
     };
 
-    const validateField = (name: string, value: string) => {
+    const validateField = (name: string, value: string): IFormErrors => {
+        let newErrors: IFormErrors = { ...errors }; // Start with the current errors
+
         switch (name) {
             case "name":
-                if (!/^[a-zA-Z'\-\s]+$/.test(value)) {
-                    setErrors(prevErrors => ({ ...prevErrors, name: "Please enter a valid name" }));
-                } else {
-                    setErrors(prevErrors => ({ ...prevErrors, name: "" }));
-                }
+                newErrors.name = !/^[a-zA-Z'\-\s]+$/.test(value) ? "Please enter a valid name" : "";
                 break;
             case "email":
-                if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
-                    setErrors(prevErrors => ({ ...prevErrors, email: "Please enter a valid email address" }));
-                } else {
-                    setErrors(prevErrors => ({ ...prevErrors, email: "" }));
-                }
+                newErrors.email = !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) ? "Please enter a valid email address" : "";
                 break;
-            // Add additional field validations here if needed
+            case "mobile":
+                newErrors.mobile = !/^\d{10}$/.test(value) ? "Please enter a valid 10-digit mobile number" : "";
+                break;
             default:
                 break;
         }
+
+        // Update the state with the new errors
+        setErrors(newErrors);
+
+        // Return the updated error state for immediate form validation
+        return newErrors;
     };
 
-    const validateForm = (formData: IFormData) => {
-        const isValid = Object.values(errors).every(error => !error) &&
-            Object.values(formData).every(field => field !== "");
+    const validateForm = (formData: IFormData, formErrors: IFormErrors) => {
+        const isValid =
+            Object.values(formErrors).every((error) => !error) && // Check if no errors
+            Object.keys(formErrors).every((key) => formData[key as keyof IFormData] !== ""); // Check if all mandatory fields are non-empty
+
         setIsFormValid(isValid);
     };
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
-        // Handle form submission logic here
-        console.log("Form submitted:", formData);
+        if (isFormValid) {
+            let url = config.getGFormLinkUrl(formData);
+            window.open(url, "_blank", "noopener,noreferrer");
+        }
     };
 
     return (
@@ -92,17 +111,20 @@ const ContactForm: React.FC = () => {
                     )}
                 </div>
                 <div>
-                    <label htmlFor="subject" className="block text-sm font-medium text-gray-700">Subject</label>
+                    <label htmlFor="mobile" className="block text-sm font-medium text-gray-700">Mobile</label>
                     <input
-                        type="text"
-                        id="subject"
-                        name="subject"
-                        value={formData.subject}
+                        type="tel"
+                        id="mobile"
+                        name="mobile"
+                        value={formData.mobile}
                         onChange={handleChange}
-                        maxLength={400}
+                        maxLength={10}
                         required
-                        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                        className={`mt-1 block w-full ${errors.mobile ? "border-red-500" : "border-gray-300"} border rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500`}
                     />
+                    {errors.mobile && (
+                        <p id="mobile-error" className="mt-2 text-sm text-red-600">{errors.mobile}</p>
+                    )}
                 </div>
                 <div>
                     <label htmlFor="message" className="block text-sm font-medium text-gray-700">Message</label>
@@ -113,8 +135,7 @@ const ContactForm: React.FC = () => {
                         maxLength={2000}
                         value={formData.message}
                         onChange={handleChange}
-                        required
-                        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                        className={`mt-1 block w-full border-gray-300 border rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500`}
                     ></textarea>
                 </div>
                 <div>
@@ -129,6 +150,6 @@ const ContactForm: React.FC = () => {
             </form>
         </div>
     );
-}
+};
 
 export default ContactForm;
