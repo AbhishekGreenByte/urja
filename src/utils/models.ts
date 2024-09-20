@@ -67,6 +67,7 @@ export interface ITeamMember{
     name:string,
     role:string,
     responsibility:string,
+    specialization?:string,
     image:string,
     details:string
 }
