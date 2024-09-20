@@ -71,6 +71,19 @@ const ContactForm: React.FC = () => {
         if (isFormValid) {
             let url = config.getGFormLinkUrl(formData);
             window.open(url, "_blank", "noopener,noreferrer");
+            //Reset Form
+            setFormData({
+                name: "",
+                email: "",
+                mobile: "",
+                message: "",
+            });
+            setErrors({
+                name: "",
+                email: "",
+                mobile: ""
+            })
+            setIsFormValid(false);
         }
     };
 
