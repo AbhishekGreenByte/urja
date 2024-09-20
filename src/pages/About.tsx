@@ -17,8 +17,8 @@ const About:React.FC = () => {
         setSelectedMember(null);
     };
     let teamMembers = config.getTeamMembers();
-    const boardMembers = teamMembers.filter((member) => member.role === "Board Member");
-    const treasurers = teamMembers.filter((member) => member.role === "Treasurer");
+    const trustee = teamMembers.filter((member) => member.role === "Trustee");
+    const coreMembers = teamMembers.filter((member) => member.role === "Core Member");
     const volunteers = teamMembers.filter((member) => member.role === "Volunteer");
 
     return (
@@ -29,8 +29,8 @@ const About:React.FC = () => {
                     <div className="container mx-auto px-4">
                         <h2 className="text-3xl font-bold text-center mb-8">About Our Team</h2>
                         <div className="space-y-4">
-                            <Accordian title="Board Members">
-                                {boardMembers.map((member) => (
+                            <Accordian title="Trustee">
+                                {trustee.map((member) => (
                                     <TeamMemberCard
                                         key={member.id}
                                         member={member}
@@ -38,8 +38,8 @@ const About:React.FC = () => {
                                     />
                                 ))}
                             </Accordian>
-                            <Accordian title="Treasurer">
-                                {treasurers.map((member) => (
+                            <Accordian title="Core Members">
+                                {coreMembers.map((member) => (
                                     <TeamMemberCard
                                         key={member.id}
                                         member={member}
@@ -47,7 +47,7 @@ const About:React.FC = () => {
                                     />
                                 ))}
                             </Accordian>
-                            <Accordian title="Volunteers" defaultClose={true}>
+                            <Accordian title="Volunteers">
                                 {volunteers.map((member) => (
                                     <TeamMemberCard
                                         key={member.id}
