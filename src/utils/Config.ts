@@ -2,7 +2,7 @@ import Contact from "../pages/Contact";
 import About from "../pages/About";
 import Home from "../pages/Home";
 import Events from "../pages/Events";
-import {IContact, IFormData, IImageJson, IPage, IPaymentDetails, ITeamMember} from "./models";
+import {IContact, IEvent, IFormData, IImageJson, IPage, IPaymentDetails, ITeamMember} from "./models";
 import Donate from "../pages/Donate";
 import {FaHome, FaCalendarAlt, FaInfoCircle, FaEnvelope, FaBars, FaDonate} from 'react-icons/fa';
 import {IconType} from "react-icons/lib/iconBase";
@@ -10,6 +10,9 @@ import imageData from '../resources/images.json';
 import paymentDetails from '../resources/upiDetails.json';
 import contactJson from '../resources/contact.json';
 import teamJson from '../resources/team.json';
+import eventJson from '../resources/events.json';
+import EventsInfo from "../pages/EventsInfo";
+import ErrorPage from "../pages/ErrorPage";
 
 class Config {
     private static _instance: Config;
@@ -21,6 +24,7 @@ class Config {
         this.paymentDetails = paymentDetails;
         this.contact = contactJson;
         this.teamJson = teamJson;
+        this.eventJson = eventJson;
     }
 
     private companyName = "URJA";
@@ -39,13 +43,17 @@ class Config {
     private teamJson: Array<ITeamMember>;
     private gformLink = "https://docs.google.com/forms/d/e/1FAIpQLScWk09-hN1a9iARyau6BBzBwMy913tlZa_sqUR8prvHmYTIGA/formResponse?usp=pp_url&entry.1148126186={NAME}&entry.1926984491={EMAIL}&entry.1008393767={PHONE}&entry.1460546303={MESSAGE}";
 
+    private eventJson:Array<IEvent>;
+
     private components: Map<string, IPage> = new Map([
         ['Default', {label: 'Default', router: '/', showMenu: false, component: Home}],
         ['Home', {label: 'Home', router: '/home', showMenu: true, component: Home, icon: FaHome}],
         ['Events', {label: 'Events', router: '/events', showMenu: true, component: Events, icon: FaCalendarAlt}],
         ['About', {label: 'About', router: '/about', showMenu: true, component: About, icon: FaInfoCircle}],
         ['Contact', {label: 'Contact', router: '/contact', showMenu: true, component: Contact, icon: FaEnvelope}],
-        ['Donate', {label: 'Donate', router: '/donate', showMenu: false, component: Donate, icon: FaDonate}]
+        ['Donate', {label: 'Donate', router: '/donate', showMenu: false, component: Donate, icon: FaDonate}],
+        ['EventsInfo', {label: 'EventsInfo', router: '/events/:id', showMenu: false, component: EventsInfo}],
+        ['ErrorPage', {label: 'ErrorPage', router: '*', showMenu: false, component: ErrorPage}]
     ]);
 
 
@@ -143,6 +151,10 @@ class Config {
             .replace('{EMAIL}',formData.email)
             .replace('{MOBILE}',formData.mobile)
             .replace('{MESSAGE}',formData.message);
+    }
+
+    public getEvent():Array<IEvent>{
+        return this.eventJson;
     }
 
 }

@@ -1,0 +1,23 @@
+[
+  {
+    "id": "gaushala-2020",
+    "name": "Gaushala",
+    "location": "Berhampur, Odisha",
+    "img": "https://images.unsplash.com/reserve/bOvf94dPRxWu0u3QsPjF_tree.jpg?q=80&w=2952&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "component": "EventBloodDonation2024"
+  },
+  {
+    "id": "election-2024",
+    "name": "Election",
+    "location": "Berhampur, Odisha",
+    "img": "https://images.unsplash.com/reserve/bOvf94dPRxWu0u3QsPjF_tree.jpg?q=80&w=2952&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "component": "EventBloodDonation2024"
+  },
+  {
+    "id": "blood-donation-2024",
+    "name": "Blood Donation",
+    "location": "Berhampur, Odisha",
+    "img": "https://images.unsplash.com/photo-1615461065929-4f8ffed6ca40?q=80&w=2829&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "component": "EventBloodDonation2024"
+  }
+]

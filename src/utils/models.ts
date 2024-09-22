@@ -88,3 +88,11 @@ export interface IDialogProps {
     member: ITeamMember;
     onClose: () => void;
 }
+
+export interface IEvent {
+    id:string,
+    name:string,
+    location:string,
+    img:string,
+    component: string
+}
