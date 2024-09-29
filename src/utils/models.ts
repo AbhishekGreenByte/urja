@@ -27,7 +27,9 @@ export interface IPaymentDetails{
     mobile: string,
     contact: string,
     email: string,
-    address: string
+    address: string,
+    merchantId: string,
+    transactionMessage: string
 }
 
 export enum UpiApps {

@@ -29,11 +29,7 @@ class Config {
 
     private companyName = "URJA";
     private paymentDetails: IPaymentDetails;
-    private phonepeLink = 'phonepe://upi/pay?pa={PAYEE_UPI}&pn={PAYEE_NAME}&cu=INR';
-    private upiLink = 'upi://pay?pa={PAYEE_UPI}&pn={PAYEE_NAME}&cu=INR'
-    private gpayLink = 'tez://upi/pay?pa={PAYEE_UPI}&pn={PAYEE_NAME}&cu=INR';
-    private paytmLink = 'paytm://upi/pay?pa={PAYEE_UPI}&pn={PAYEE_NAME}&cu=INR';
-
+    private upiLink = 'upi://pay?pa={PAYEE_UPI}&pn={PAYEE_NAME}&mc={MERCHANT_ID}&tn={TRANSACTION_MESSAGE}&am=&cu=INR'
 
     private defaultRoute = "/";
     private routerPrefix = "/urja";
@@ -113,28 +109,12 @@ class Config {
         return this.paymentDetails;
     }
 
-    public getPhonepeLink(): string {
-        return this.phonepeLink
-            .replace('{PAYEE_UPI}',this.paymentDetails.upi)
-            .replace('{PAYEE_NAME}',this.paymentDetails.name);
-    }
-
     public getUpiLink(): string {
         return this.upiLink
             .replace('{PAYEE_UPI}',this.paymentDetails.upi)
-            .replace('{PAYEE_NAME}',this.paymentDetails.name);
-    }
-
-    public getGpayLink(): string {
-        return this.gpayLink
-            .replace('{PAYEE_UPI}',this.paymentDetails.upi)
-            .replace('{PAYEE_NAME}',this.paymentDetails.name);
-    }
-
-    public getPtmLink(): string {
-        return this.paytmLink
-            .replace('{PAYEE_UPI}',this.paymentDetails.upi)
-            .replace('{PAYEE_NAME}',this.paymentDetails.name);
+            .replace('{PAYEE_NAME}',this.paymentDetails.name)
+            .replace('{TRANSACTION_MESSAGE}', this.paymentDetails.transactionMessage)
+            .replace('{MERCHANT_ID}', this.paymentDetails.merchantId);
     }
 
     public getContact():IContact{

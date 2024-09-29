@@ -6,31 +6,18 @@ import {UpiApps} from "../utils/models";
 import { FaWhatsapp } from "react-icons/fa";
 import { SiPhonepe, SiGooglepay, SiPaytm } from "react-icons/si";
 import QrCode from "../components/QrCode";
-import {getUpiAppLink} from "../utils/utils";
 
 const Donate:React.FC = () => {
 
     const [donationMethod, setDonationMethod] = useState<string>('');
-    const [appType, setAppType] = useState<UpiApps>(UpiApps.UPI);
-
-    const buttons = [
-        { name: "UPI", icon: FaQrcode, color: "bg-green-400", value: UpiApps.UPI },
-        { name: "PhonePe", icon: SiPhonepe, color: "bg-purple-600", value: UpiApps.PHONEPE },
-        { name: "GPay", icon: SiGooglepay, color: "bg-green-500", value: UpiApps.GPAY },
-        { name: "Paytm", icon: SiPaytm, color: "bg-blue-500", value: UpiApps.PAYTM },
-    ];
 
 
     const handleMethodChange = (method: string) => {
         setDonationMethod(method);
     };
 
-    const getUpiLink = () => {
-        return getUpiAppLink(appType);
-    }
-
     const handleUpiCall = () => {
-        let url = getUpiLink();
+        let url = config.getUpiLink();
         window.open(url, "_blank", "noopener,noreferrer");
     }
 
@@ -38,7 +25,7 @@ const Donate:React.FC = () => {
     return (
         <div>
             <NavBar active="Donate"/>
-            <div className="pt-16 bg-gray-100 w-full h-screen">
+            <div className="bg-gray-100 w-full h-full">
                 <div className="min-h-screen bg-cover bg-center flex items-center justify-center px-4 sm:px-6 lg:px-8"
                      style={{backgroundImage: `url(${config.getImageUrl('donation_banner')})`}}>
                     <div className="flex justify-center items-center w-full">
@@ -77,7 +64,7 @@ const Donate:React.FC = () => {
                                 {donationMethod === 'UPI' && (
                                     <div className="space-y-4">
                                         <div className="flex justify-center">
-                                            <QrCode link={getUpiLink()} />
+                                            <QrCode link={config.getUpiLink()} />
                                         </div>
                                         <div className="flex justify-center">
                                             <span className="font-medium text-gray-600 cursor-pointer">{config.getPaymentDetails().upi}</span>
@@ -87,24 +74,12 @@ const Donate:React.FC = () => {
                                             {config.getPaymentDetails().name}
                                         </div>
 
-                                        <div className="flex justify-center items-center gap-6">
-                                            {buttons.map((button) => (
-                                                <button
-                                                    key={button.name}
-                                                    className={`${button.color} text-white w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center shadow-lg transform transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-${button.color.split('-')[1]}-400 active:scale-95`}
-                                                    aria-label={`Pay with ${button.name}`}
-                                                    onClick={() => setAppType(button.value)}
-                                                >
-                                                    <button.icon className="text-2xl md:text-3xl lg:text-4xl" />
-                                                </button>
-                                            ))}
-                                        </div>
                                         <button
                                             type="submit"
                                             onClick={handleUpiCall}
                                             className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                                         >
-                                            Click Here to Donate via {appType}
+                                            Click Here to Donate
                                         </button>
                                     </div>
                                 )}
