@@ -1,4 +1,4 @@
-import {FaEnvelope, FaMapMarkerAlt, FaPhone} from "react-icons/fa";
+import {FaEnvelope, FaMapMarkerAlt, FaPhoneAlt} from "react-icons/fa";
 import React from "react";
 import {config} from "../utils/Config";
 
@@ -16,7 +16,7 @@ const LocationCard:React.FC = () => {
                     <div className="flex items-center">
                         <a href={`tel:${config.getContact().phone}`}>
                             <div className="flex items-center justify-center">
-                                <FaPhone className="text-blue-500 mr-3"/>
+                                <FaPhoneAlt className="text-blue-500 mr-3"/>
                                 <p className="text-gray-600">{config.getContact().phoneLabel}</p>
                             </div>
                         </a>
@@ -24,7 +24,7 @@ const LocationCard:React.FC = () => {
                     <div className="flex items-center">
                         <a href={`tel:${config.getContact().alternativePhone}`}>
                             <div className="flex items-center justify-center">
-                                <FaPhone className="text-blue-500 mr-3"/>
+                                <FaPhoneAlt className="text-blue-500 mr-3"/>
                                 <p className="text-gray-600">{config.getContact().alternativePhoneLabel}</p>
                             </div>
                         </a>
